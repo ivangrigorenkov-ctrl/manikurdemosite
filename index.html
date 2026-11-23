@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Маникюр — студия маникюра</title>
+<meta name="description" content="Студия маникюра — безупречный маникюр, авторский дизайн, премиальные материалы.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --bg: #f7f1ec;
+    --bg-2: #efe6dd;
+    --ink: #2a1c20;
+    --ink-soft: #6b5559;
+    --gold: #c19a6b;
+    --gold-deep: #9a7548;
+    --rose: #d98a82;
+    --rose-soft: #f0d4ce;
+    --plum: #3c2230;
+    --line: rgba(42,28,32,.12);
+    --shadow: 0 30px 80px -20px rgba(60,34,48,.25);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Jost',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 8%;
+    transition:all .4s ease;
+    backdrop-filter:blur(0px);
+  }
+  nav.scrolled{
+    background:rgba(247,241,236,.85);
+    backdrop-filter:blur(14px);
+    padding:14px 8%;
+    box-shadow:0 1px 0 var(--line);
+  }
+  .logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:28px;font-weight:600;letter-spacing:.12em;
+    color:var(--ink);text-decoration:none;
+  }
+  .logo span{color:var(--gold)}
+  .nav-links{display:flex;gap:36px;align-items:center}
+  .nav-links a{
+    text-decoration:none;color:var(--ink);
+    font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:400;transition:color .3s;position:relative;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;bottom:-6px;left:0;
+    width:0;height:1px;background:var(--gold);transition:width .4s;
+  }
+  .nav-links a:hover{color:var(--gold)}
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{
+    border:1px solid var(--ink);
+    padding:10px 22px;border-radius:40px;
+    transition:all .3s;
+  }
+  .nav-cta:hover{background:var(--ink);color:var(--bg)!important}
+  .nav-cta::after{display:none}
+  .burger{display:none;font-size:22px;background:none;border:none;cursor:pointer;color:var(--ink)}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;height:100vh;min-height:680px;
+    overflow:hidden;
+    display:flex;align-items:center;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(217,138,130,.25), transparent 45%),
+      radial-gradient(circle at 80% 70%, rgba(193,154,107,.28), transparent 50%),
+      linear-gradient(180deg,#f7f1ec 0%, #efe6dd 100%);
+  }
+  .hero-bg{
+    position:absolute;inset:0;z-index:0;
+    background:radial-gradient(circle at 50% 90%, rgba(60,34,48,.08), transparent 60%);
+  }
+  .layer{position:absolute;will-change:transform;pointer-events:none}
+  .blob-1{top:8%;left:4%;width:280px;height:280px;
+    background:radial-gradient(circle at 30% 30%, #f0d4ce, #d98a82);
+    border-radius:60% 40% 30% 70%/60% 30% 70% 40%;
+    filter:blur(8px);opacity:.5;
+    animation:floatBlob 14s ease-in-out infinite;
+  }
+  .blob-2{bottom:10%;right:6%;width:340px;height:340px;
+    background:radial-gradient(circle at 30% 30%, #e8c4a0, #c19a6b);
+    border-radius:40% 60% 70% 30%/40% 70% 30% 60%;
+    filter:blur(10px);opacity:.4;
+    animation:floatBlob 18s ease-in-out infinite reverse;
+  }
+  .leaf-1{top:15%;right:18%;font-size:34px;color:var(--gold);opacity:.55;animation:spin 22s linear infinite}
+  .leaf-2{bottom:25%;left:14%;font-size:26px;color:var(--rose);opacity:.6;animation:spin 26s linear infinite reverse}
+
+  @keyframes floatBlob{
+    0%,100%{transform:translate(0,0) rotate(0)}
+    50%{transform:translate(20px,-30px) rotate(20deg)}
+  }
+  @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+  .hero-inner{
+    position:relative;z-index:3;
+    width:100%;max-width:1400px;margin:0 auto;padding:0 8%;
+    display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;
+  }
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--ink-soft);margin-bottom:24px;
+  }
+  .hero-tag .line{width:36px;height:1px;background:var(--gold)}
+  h1.hero-title{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;font-size:clamp(48px,7vw,92px);
+    line-height:.95;letter-spacing:-.01em;
+    color:var(--ink);margin-bottom:18px;
+  }
+  h1.hero-title em{font-style:italic;color:var(--gold-deep);font-weight:400}
+  .hero-sub{font-size:17px;color:var(--ink-soft);max-width:440px;margin-bottom:36px;line-height:1.7}
+  .hero-btns{display:flex;gap:18px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:16px 30px;border-radius:50px;
+    font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+    text-decoration:none;font-weight:500;
+    transition:all .35s cubic-bezier(.2,.8,.2,1);
+    cursor:pointer;border:none;
+  }
+  .btn-primary{
+    background:var(--ink);color:var(--bg);
+    box-shadow:0 12px 30px -10px rgba(42,28,32,.5);
+  }
+  .btn-primary:hover{
+    transform:translateY(-3px);background:var(--plum);
+    box-shadow:0 18px 40px -10px rgba(60,34,48,.6);
+  }
+  .btn-outline{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:var(--bg)}
+  .btn .tg{color:#229ED9}
+
+  /* статичная (не кликабельная) кнопка */
+  .btn-static{cursor:default;user-select:none}
+  .btn-static.btn-outline:hover{background:transparent;color:var(--ink)}
+  .btn-static.btn-primary:hover{
+    transform:none;background:var(--ink);
+    box-shadow:0 12px 30px -10px rgba(42,28,32,.5);
+  }
+
+  .hero-visual{position:relative;height:520px}
+  .visual-card{position:absolute;border-radius:8px;overflow:hidden;box-shadow:var(--shadow);background:#efe6dd}
+  .vc-1{top:0;left:10%;width:62%;height:80%;transform:rotate(-3deg)}
+  .vc-2{bottom:0;right:0;width:48%;height:55%;transform:rotate(4deg);border:6px solid var(--bg)}
+  .visual-card img{width:100%;height:100%;object-fit:cover;display:block}
+  .visual-badge{
+    position:absolute;z-index:5;bottom:18%;left:4%;
+    background:rgba(247,241,236,.92);backdrop-filter:blur(10px);
+    padding:14px 22px;border-radius:6px;
+    box-shadow:0 14px 30px -10px rgba(0,0,0,.2);
+    display:flex;align-items:center;gap:14px;
+  }
+  .visual-badge .stars{color:var(--gold);font-size:13px;letter-spacing:2px}
+  .visual-badge .num{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--ink);line-height:1}
+  .visual-badge small{display:block;font-size:10px;letter-spacing:.2em;color:var(--ink-soft);text-transform:uppercase}
+
+  .scroll-hint{
+    position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+    z-index:5;font-size:10px;letter-spacing:.3em;color:var(--ink-soft);
+    text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:10px;
+  }
+  .scroll-hint .mouse{width:22px;height:36px;border:1px solid var(--ink-soft);border-radius:12px;position:relative}
+  .scroll-hint .mouse::after{
+    content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);
+    width:3px;height:6px;background:var(--gold);border-radius:3px;
+    animation:scrollDot 1.6s ease-in-out infinite;
+  }
+  @keyframes scrollDot{0%{opacity:0;top:6px}50%{opacity:1}100%{opacity:0;top:18px}}
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{padding:120px 8%;position:relative}
+  .sec-head{text-align:center;margin-bottom:70px;display:flex;flex-direction:column;align-items:center;gap:14px}
+  .sec-eyebrow{
+    font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-deep);
+    display:flex;align-items:center;gap:14px;
+  }
+  .sec-eyebrow::before,.sec-eyebrow::after{content:"";display:block;width:30px;height:1px;background:var(--gold)}
+  .sec-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(34px,5vw,58px);font-weight:500;line-height:1.05;color:var(--ink);
+  }
+  .sec-title em{font-style:italic;color:var(--gold-deep)}
+  .sec-desc{max-width:560px;color:var(--ink-soft);font-size:16px}
+
+  /* ---------- ABOUT PARALLAX BAND ---------- */
+  .about-band{
+    position:relative;padding:180px 8%;
+    background:
+      linear-gradient(rgba(60,34,48,.55), rgba(60,34,48,.7)),
+      url('https://images.unsplash.com/photo-1632345031435-8727f689c76f?w=1600&auto=format&fit=crop&q=80') center/cover fixed;
+    color:#f7f1ec;text-align:center;overflow:hidden;
+  }
+  .about-band::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 50% 50%, transparent 30%, rgba(60,34,48,.5));
+  }
+  .about-band h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(32px,4.5vw,52px);font-weight:400;line-height:1.25;
+    max-width:880px;margin:0 auto;position:relative;z-index:2;
+  }
+  .about-band h2 em{font-style:italic;color:#e8c4a0}
+  .about-stats{display:flex;gap:60px;justify-content:center;margin-top:50px;position:relative;z-index:2;flex-wrap:wrap}
+  .stat{text-align:center}
+  .stat .num{font-family:'Cormorant Garamond',serif;font-size:48px;color:#e8c4a0;line-height:1}
+  .stat .lbl{font-size:11px;letter-spacing:.22em;text-transform:uppercase;margin-top:8px;opacity:.8}
+
+  /* ---------- TARIFFS ---------- */
+  .tariffs{background:linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%)}
+  .tariff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1300px;margin:0 auto}
+  .tariff{
+    position:relative;background:#fff;border-radius:14px;overflow:hidden;
+    box-shadow:0 20px 50px -20px rgba(60,34,48,.18);
+    transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s;
+    display:flex;flex-direction:column;
+  }
+  .tariff:hover{transform:translateY(-12px);box-shadow:0 40px 80px -20px rgba(60,34,48,.32)}
+  .tariff-img{height:240px;overflow:hidden;position:relative;background:#efe6dd}
+  .tariff-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+  .tariff:hover .tariff-img img{transform:scale(1.08)}
+  .tariff-img::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, transparent 40%, rgba(42,28,32,.4));
+  }
+  .tariff-tag{
+    position:absolute;top:18px;left:18px;z-index:3;
+    background:rgba(247,241,236,.9);backdrop-filter:blur(6px);
+    padding:6px 14px;border-radius:30px;
+    font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);
+  }
+  .tariff.featured .tariff-tag{background:var(--ink);color:var(--bg)}
+  .tariff-body{padding:30px 28px 36px;flex:1;display:flex;flex-direction:column}
+  .tariff h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;margin-bottom:6px}
+  .tariff .desc{color:var(--ink-soft);font-size:14px;margin-bottom:22px}
+  .tariff .price{
+    display:flex;align-items:baseline;gap:6px;margin-bottom:22px;
+    padding-bottom:22px;border-bottom:1px solid var(--line);
+  }
+  .tariff .price .val{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:600;color:var(--ink);line-height:1}
+  .tariff .price .cur{font-size:18px;color:var(--gold-deep)}
+  .tariff .includes{list-style:none;margin-bottom:26px}
+  .tariff .includes li{
+    display:flex;align-items:flex-start;gap:12px;
+    font-size:14px;color:var(--ink-soft);margin-bottom:12px;
+  }
+  .tariff .includes i{color:var(--gold);font-size:13px;margin-top:5px;flex-shrink:0}
+  .tariff .btn{width:100%;justify-content:center;margin-top:auto}
+  .tariff.featured .btn-primary{background:var(--plum)}
+  .tariff.featured .btn-primary:hover{background:var(--ink)}
+
+  /* ---------- GALLERY ---------- */
+  .gallery{padding-top:0}
+  .gallery-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    grid-auto-rows:200px;gap:18px;max-width:1300px;margin:0 auto;
+  }
+  .gallery-item{
+    overflow:hidden;border-radius:10px;position:relative;cursor:pointer;
+    box-shadow:0 10px 30px -10px rgba(60,34,48,.2);background:#efe6dd;
+  }
+  .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+  .gallery-item:hover img{transform:scale(1.12)}
+  .gallery-item::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 50%, rgba(60,34,48,.6));
+    opacity:0;transition:opacity .4s;
+  }
+  .gallery-item:hover::after{opacity:1}
+  .gallery-item .label{
+    position:absolute;bottom:18px;left:18px;z-index:3;
+    color:#f7f1ec;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+    transform:translateY(20px);opacity:0;transition:all .4s .1s;
+  }
+  .gallery-item:hover .label{transform:translateY(0);opacity:1}
+  .gi-tall{grid-row:span 2}
+  .gi-wide{grid-column:span 2}
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background:
+      radial-gradient(circle at 80% 20%, rgba(217,138,130,.15), transparent 50%),
+      radial-gradient(circle at 10% 80%, rgba(193,154,107,.18), transparent 50%),
+      var(--bg);
+    position:relative;overflow:hidden;
+  }
+  .contact-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:60px;
+    max-width:1200px;margin:0 auto;align-items:center;
+  }
+  .contact-card{
+    background:#fff;border-radius:16px;padding:50px;
+    box-shadow:var(--shadow);position:relative;
+    transition:box-shadow .6s, transform .6s;
+  }
+  .contact-card::before{
+    content:"";position:absolute;top:0;left:0;width:80px;height:4px;
+    background:linear-gradient(90deg, var(--gold), var(--rose));
+    border-radius:16px 0 0 0;
+  }
+  .contact-card.highlight{
+    box-shadow:0 0 0 4px rgba(193,154,107,.35), 0 30px 80px -20px rgba(60,34,48,.35);
+    transform:translateY(-4px);
+  }
+  .contact-card h3{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;margin-bottom:8px}
+  .contact-card > p{color:var(--ink-soft);margin-bottom:24px}
+
+  .selected-tariff{
+    display:none;align-items:center;gap:14px;
+    background:linear-gradient(135deg, rgba(193,154,107,.12), rgba(217,138,130,.12));
+    border:1px solid rgba(193,154,107,.35);
+    padding:16px 20px;border-radius:12px;margin-bottom:24px;
+    animation:slideInTariff .5s cubic-bezier(.2,.8,.2,1);
+  }
+  .selected-tariff.show{display:flex}
+  @keyframes slideInTariff{
+    from{opacity:0;transform:translateY(-10px)}
+    to{opacity:1;transform:none}
+  }
+  .selected-tariff .st-icon{
+    width:42px;height:42px;border-radius:50%;
+    background:linear-gradient(135deg, var(--gold), var(--gold-deep));
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;font-size:16px;
+  }
+  .selected-tariff .st-info{flex:1}
+  .selected-tariff .st-info small{
+    font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);
+    display:block;margin-bottom:2px;
+  }
+  .selected-tariff .st-info strong{
+    font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--ink);
+  }
+  .selected-tariff .st-price{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;color:var(--gold-deep);font-weight:600;
+  }
+  .selected-tariff .st-clear{
+    background:none;border:none;cursor:pointer;
+    width:28px;height:28px;border-radius:50%;
+    color:var(--ink-soft);font-size:14px;
+    transition:all .25s;
+  }
+  .selected-tariff .st-clear:hover{background:rgba(42,28,32,.08);color:var(--ink)}
+
+  /* контактные карточки — не кликабельные */
+  .contact-methods{display:flex;flex-direction:column;gap:14px}
+  .contact-method{
+    display:flex;align-items:center;gap:18px;padding:18px;
+    border:1px solid var(--line);border-radius:10px;
+    color:var(--ink);transition:all .3s;
+    cursor:default;user-select:none;
+  }
+  .contact-method:hover{
+    border-color:var(--gold);background:rgba(193,154,107,.06);
+  }
+  .contact-method .icon{
+    width:46px;height:46px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:18px;flex-shrink:0;
+  }
+  .contact-method .icon.phone{background:linear-gradient(135deg,#c19a6b,#9a7548)}
+  .contact-method .icon.tg{background:linear-gradient(135deg,#229ED9,#36b3d9)}
+  .contact-method .icon.wa{background:linear-gradient(135deg,#25D366,#128C7E)}
+  .contact-method .info small{
+    display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);
+  }
+  .contact-method .info strong{
+    font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--ink);
+  }
+
+  .contact-visual{position:relative;height:480px}
+  .cv-img{position:absolute;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);background:#efe6dd}
+  .cv-1{top:0;left:0;width:65%;height:75%;transform:rotate(-2deg)}
+  .cv-2{bottom:0;right:0;width:50%;height:60%;transform:rotate(3deg);border:5px solid var(--bg)}
+  .cv-img img{width:100%;height:100%;object-fit:cover}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--plum);color:#f7f1ec;padding:60px 8% 30px}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1300px;margin:0 auto}
+  .foot-logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;letter-spacing:.12em;margin-bottom:14px}
+  .foot-logo span{color:var(--gold)}
+  footer p{font-size:14px;color:rgba(247,241,236,.6);margin-bottom:18px}
+  footer h5{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#e8c4a0;margin-bottom:18px}
+  footer ul{list-style:none}
+  footer ul li{margin-bottom:10px}
+  footer ul a,footer ul span{
+    color:rgba(247,241,236,.7);text-decoration:none;font-size:14px;transition:color .3s;
+    cursor:default;
+  }
+  footer ul a:hover{color:var(--gold)}
+  .foot-bottom{
+    border-top:1px solid rgba(247,241,236,.12);padding-top:24px;margin-top:40px;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:12px;color:rgba(247,241,236,.5);max-width:1300px;margin-left:auto;margin-right:auto;
+  }
+  .socials{display:flex;gap:14px}
+  .socials a,.socials span{
+    width:36px;height:36px;border-radius:50%;
+    border:1px solid rgba(247,241,236,.2);
+    display:flex;align-items:center;justify-content:center;
+    color:rgba(247,241,236,.7);text-decoration:none;transition:all .3s;
+  }
+  .socials a:hover{background:var(--gold);border-color:var(--gold);color:var(--plum)}
+
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity 1s, transform 1s}
+  .reveal.in{opacity:1;transform:none}
+
+  .mobile-menu{
+    position:fixed;inset:0;z-index:200;background:var(--bg);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:24px;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  }
+  .mobile-menu.open{transform:none}
+  .mobile-menu a{text-decoration:none;color:var(--ink);font-family:'Cormorant Garamond',serif;font-size:30px}
+  .mobile-menu .close{
+    position:absolute;top:24px;right:24px;background:none;border:none;
+    font-size:28px;color:var(--ink);cursor:pointer;
+  }
+
+  /* ======== МОБИЛЬНАЯ ВЕРСИЯ ======== */
+  @media (max-width:980px){
+    .nav-links{display:none}
+    .burger{display:block}
+    nav{
+      background:rgba(247,241,236,.92);
+      backdrop-filter:blur(12px);
+      box-shadow:0 1px 0 var(--line);
+    }
+    .hero{
+      height:auto;
+      min-height:100vh;
+      min-height:100svh;
+      padding-top:110px;
+      padding-bottom:60px;
+      align-items:flex-start;
+    }
+    .hero-inner{
+      grid-template-columns:1fr;
+      text-align:center;
+      align-items:start;
+      padding-top:10px;
+    }
+    .hero-tag{justify-content:center}
+    .hero-btns{justify-content:center}
+    .hero-visual{height:340px;margin-top:30px}
+    .tariff-grid{grid-template-columns:1fr;max-width:480px}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+    .gi-wide{grid-column:span 2}
+    .contact-grid{grid-template-columns:1fr;gap:40px}
+    .about-band{background-attachment:scroll;padding:120px 8%}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:30px}
+  }
+
+  @media (max-width:560px){
+    .hero{
+      padding-top:100px;
+      min-height:100vh;
+      min-height:100svh;
+    }
+    h1.hero-title{font-size:38px}
+    .hero-sub{font-size:15px}
+    .scroll-hint{display:none}
+    .gallery-grid{grid-template-columns:1fr}
+    .gi-wide{grid-column:span 1}
+    .visual-badge{left:0;padding:10px 14px}
+    .foot-grid{grid-template-columns:1fr}
+    .foot-bottom{flex-direction:column;gap:14px;text-align:center}
+    .contact-card{padding:36px 24px}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="logo">Ман<span>и</span>кюр</a>
+  <div class="nav-links">
+    <a href="#about">О студии</a>
+    <a href="#tariffs">Тарифы</a>
+    <a href="#gallery">Работы</a>
+    <a href="#contact">Контакты</a>
+    <a href="#contact" class="nav-cta">Записаться</a>
+  </div>
+  <button class="burger" id="burger"><i class="fa-solid fa-bars"></i></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="closeMenu"><i class="fa-solid fa-xmark"></i></button>
+  <a href="#about" onclick="closeMenu()">О студии</a>
+  <a href="#tariffs" onclick="closeMenu()">Тарифы</a>
+  <a href="#gallery" onclick="closeMenu()">Работы</a>
+  <a href="#contact" onclick="closeMenu()">Контакты</a>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="layer blob-1" data-speed="0.15"></div>
+  <div class="layer blob-2" data-speed="0.25"></div>
+  <div class="layer leaf-1" data-speed="0.4"><i class="fa-solid fa-leaf"></i></div>
+  <div class="layer leaf-2" data-speed="0.5"><i class="fa-regular fa-star"></i></div>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-tag"><span class="line"></span> Студия маникюра · с 2016</div>
+      <h1 class="hero-title">Искусство в <em>каждой</em><br>детали ногтя</h1>
+      <p class="hero-sub">
+        Атмосферная студия, где эстетика встречается с заботой.
+        Безупречный маникюр, премиальные материалы и мастера, влюблённые в своё дело.
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-primary">
+          <i class="fa-solid fa-calendar-check"></i> Записаться
+        </a>
+        <div class="btn btn-outline btn-static">
+          <i class="fa-brands fa-telegram tg"></i> Telegram
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual" id="heroVisual">
+      <div class="visual-card vc-1">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&auto=format&fit=crop&q=80"
+             alt="Маникюр в студии" loading="eager">
+      </div>
+      <div class="visual-card vc-2">
+        <img src="https://images.unsplash.com/photo-1610992015731-2dcc33b2b9a1?w=500&auto=format&fit=crop&q=80"
+             alt="Дизайн ногтей" loading="eager">
+      </div>
+      <div class="visual-badge">
+        <div>
+          <div class="stars">★★★★★</div>
+          <small>4.98 · 1280 отзывов</small>
+        </div>
+        <div class="num">5★</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Листайте вниз</span>
+    <span class="mouse"></span>
+  </div>
+</header>
+
+<!-- ABOUT PARALLAX BAND -->
+<section class="about-band" id="about">
+  <h2>Мы верим, что <em>красивый маникюр</em> — это не услуга,<br>а ритуал любви к себе.</h2>
+  <div class="about-stats">
+    <div class="stat"><div class="num">8</div><div class="lbl">лет опыта</div></div>
+    <div class="stat"><div class="num">12k+</div><div class="lbl">клиенток</div></div>
+    <div class="stat"><div class="num">40+</div><div class="lbl">дизайнов</div></div>
+    <div class="stat"><div class="num">7</div><div class="lbl">мастеров</div></div>
+  </div>
+</section>
+
+<!-- TARIFFS -->
+<section class="tariffs" id="tariffs">
+  <div class="sec-head reveal">
+    <span class="sec-eyebrow">Тарифы</span>
+    <h2 class="sec-title">Выберите свой <em>ритуал</em></h2>
+    <p class="sec-desc">Прозрачные цены без скрытых платежей. В стоимость входят материалы премиум-класса и стерилизация инструмента.</p>
+  </div>
+
+  <div class="tariff-grid">
+    <div class="tariff reveal">
+      <div class="tariff-img">
+        <span class="tariff-tag">Классика</span>
+        <img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=600&auto=format&fit=crop&q=80"
+             alt="Классический маникюр" loading="lazy">
+      </div>
+      <div class="tariff-body">
+        <h3>Classic Care</h3>
+        <p class="desc">Бережный уход за натуральными ногтями.</p>
+        <div class="price"><span class="val">1 900</span><span class="cur">₽</span></div>
+        <ul class="includes">
+          <li><i class="fa-solid fa-check"></i> Аппаратный или комбинированный маникюр</li>
+          <li><i class="fa-solid fa-check"></i> Уход за кутикулой и спа-ванночка</li>
+          <li><i class="fa-solid fa-check"></i> Покрытие гель-лаком (однотон)</li>
+          <li><i class="fa-solid fa-check"></i> Питательный маслом-лосьон</li>
+        </ul>
+        <button class="btn btn-primary tariff-btn" data-tariff="Classic Care" data-price="1 900 ₽">
+          <i class="fa-solid fa-calendar-check"></i> Записаться
+        </button>
+      </div>
+    </div>
+
+    <div class="tariff featured reveal">
+      <div class="tariff-img">
+        <span class="tariff-tag">Хит продаж</span>
+        <img src="https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=600&auto=format&fit=crop&q=80"
+             alt="Премиум дизайн ногтей" loading="lazy">
+      </div>
+      <div class="tariff-body">
+        <h3>Signature Art</h3>
+        <p class="desc">Авторский дизайн с проработкой каждой детали.</p>
+        <div class="price"><span class="val">3 400</span><span class="cur">₽</span></div>
+        <ul class="includes">
+          <li><i class="fa-solid fa-check"></i> Всё из тарифа Classic Care</li>
+          <li><i class="fa-solid fa-check"></i> Укрепление и выравнивание ногтя</li>
+          <li><i class="fa-solid fa-check"></i> Авторский дизайн (2–3 пальца)</li>
+          <li><i class="fa-solid fa-check"></i> Слайдеры, фольга, стразы Swarovski</li>
+          <li><i class="fa-solid fa-check"></i> Spa-уход для рук с массажем</li>
+        </ul>
+        <button class="btn btn-primary tariff-btn" data-tariff="Signature Art" data-price="3 400 ₽">
+          <i class="fa-solid fa-calendar-check"></i> Записаться
+        </button>
+      </div>
+    </div>
+
+    <div class="tariff reveal">
+      <div class="tariff-img">
+        <span class="tariff-tag">Premium</span>
+        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&auto=format&fit=crop&q=80"
+             alt="Премиум уход за ногтями" loading="lazy">
+      </div>
+      <div class="tariff-body">
+        <h3>Royal Premium</h3>
+        <p class="desc">Полное преображение с премиальными материалами.</p>
+        <div class="price"><span class="val">5 800</span><span class="cur">₽</span></div>
+        <ul class="includes">
+          <li><i class="fa-solid fa-check"></i> Всё из тарифа Signature Art</li>
+          <li><i class="fa-solid fa-check"></i> Японский маникюр P-Shine</li>
+          <li><i class="fa-solid fa-check"></i> Сложный дизайн на все ногти</li>
+          <li><i class="fa-solid fa-check"></i> Парафиновая ванночка</li>
+          <li><i class="fa-solid fa-check"></i> Игристое и сладкое дополнение</li>
+        </ul>
+        <button class="btn btn-primary tariff-btn" data-tariff="Royal Premium" data-price="5 800 ₽">
+          <i class="fa-solid fa-calendar-check"></i> Записаться
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="sec-head reveal">
+    <span class="sec-eyebrow">Портфолио</span>
+    <h2 class="sec-title">Работы нашей <em>студии</em></h2>
+    <p class="sec-desc">Каждый набор — маленькое произведение. Нажмите, чтобы рассмотреть ближе.</p>
+  </div>
+
+  <div class="gallery-grid reveal">
+    <div class="gallery-item gi-tall">
+      <img src="https://images.unsplash.com/photo-1610992015731-2dcc33b2b9a1?w=500&auto=format&fit=crop&q=80" alt="Nude Glow" loading="lazy">
+      <span class="label">Nude Glow</span>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=500&auto=format&fit=crop&q=80" alt="French Modern" loading="lazy">
+      <span class="label">French Modern</span>
+    </div>
+    <div class="gallery-item gi-wide">
+      <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=900&auto=format&fit=crop&q=80" alt="Crystal Bloom" loading="lazy">
+      <span class="label">Crystal Bloom</span>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=500&auto=format&fit=crop&q=80" alt="Velvet Rose" loading="lazy">
+      <span class="label">Velvet Rose</span>
+    </div>
+    <div class="gallery-item gi-wide">
+      <img src="https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=900&auto=format&fit=crop&q=80" alt="Golden Aura" loading="lazy">
+      <span class="label">Golden Aura</span>
+    </div>
+    <div class="gallery-item gi-tall">
+      <img src="https://images.unsplash.com/photo-1583241475880-083f843727e9?w=500&auto=format&fit=crop&q=80" alt="Minimal Lines" loading="lazy">
+      <span class="label">Minimal Lines</span>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1632345031435-8727f689c76f?w=500&auto=format&fit=crop&q=80" alt="Pastel Dream" loading="lazy">
+      <span class="label">Pastel Dream</span>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1591019179328-cd8b070d3373?w=500&auto=format&fit=crop&q=80" alt="Mirror Chrome" loading="lazy">
+      <span class="label">Mirror Chrome</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="sec-head reveal">
+    <span class="sec-eyebrow">Запись</span>
+    <h2 class="sec-title">Запишитесь на <em>сеанс</em></h2>
+    <p class="sec-desc">Свяжитесь с нами удобным способом — мы всегда на связи.</p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-card reveal" id="contactCard">
+      <h3>Наши контакты</h3>
+      <p>Выберите удобный способ связи.</p>
+
+      <div class="selected-tariff" id="selectedTariff">
+        <div class="st-icon"><i class="fa-solid fa-check"></i></div>
+        <div class="st-info">
+          <small>Выбранный тариф</small>
+          <strong id="tariffName">—</strong>
+        </div>
+        <div class="st-price" id="tariffPrice">—</div>
+        <button class="st-clear" id="clearTariff" title="Убрать">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="contact-methods">
+        <div class="contact-method">
+          <span class="icon phone"><i class="fa-solid fa-phone"></i></span>
+          <span class="info">
+            <small>Телефон</small>
+            <strong>+7 (999) 123-45-67</strong>
+          </span>
+        </div>
+        <div class="contact-method">
+          <span class="icon tg"><i class="fa-brands fa-telegram"></i></span>
+          <span class="info">
+            <small>Telegram</small>
+            <strong>@lumiere_nails</strong>
+          </span>
+        </div>
+        <div class="contact-method">
+          <span class="icon wa"><i class="fa-brands fa-whatsapp"></i></span>
+          <span class="info">
+            <small>WhatsApp</small>
+            <strong>+7 (999) 123-45-67</strong>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-visual">
+      <div class="cv-img cv-1">
+        <img src="https://images.unsplash.com/photo-1632345031435-8727f689c76f?w=600&auto=format&fit=crop&q=80"
+             alt="Интерьер студии" loading="lazy">
+      </div>
+      <div class="cv-img cv-2">
+        <img src="https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=500&auto=format&fit=crop&q=80"
+             alt="Мастер за работой" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-logo">Ман<span>и</span>кюр</div>
+      <p>Студия маникюра, где каждая деталь продумана для вашего комфорта и красоты.</p>
+      <div class="socials">
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <span><i class="fa-brands fa-telegram"></i></span>
+        <a href="#"><i class="fa-brands fa-vk"></i></a>
+        <span><i class="fa-solid fa-phone"></i></span>
+      </div>
+    </div>
+    <div>
+      <h5>Студия</h5>
+      <ul>
+        <li><a href="#about">О нас</a></li>
+        <li><a href="#tariffs">Тарифы</a></li>
+        <li><a href="#gallery">Портфолио</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Услуги</h5>
+      <ul>
+        <li><a href="#">Маникюр</a></li>
+        <li><a href="#">Педикюр</a></li>
+        <li><a href="#">Наращивание</a></li>
+        <li><a href="#">Дизайн</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Контакты</h5>
+      <ul>
+        <li><span>+7 (999) 123-45-67</span></li>
+        <li><span>@lumiere_nails</span></li>
+        <li><span>Москва, ул. Тверская 12</span></li>
+        <li><span>Ежедневно 10:00–21:00</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2025 Студия «Маникюр». Все права защищены.</span>
+    <span>Сделано с любовью к деталям</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const closeBtn = document.getElementById('closeMenu');
+  function openMenu(){mobileMenu.classList.add('open')}
+  function closeMenu(){mobileMenu.classList.remove('open')}
+  burger.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+
+  const layers = document.querySelectorAll('.layer');
+  const heroVisual = document.getElementById('heroVisual');
+  function parallaxScroll(){
+    const y = window.scrollY;
+    layers.forEach(l => {
+      const speed = parseFloat(l.dataset.speed) || 0.2;
+      l.style.transform = `translateY(${y * speed}px)`;
+    });
+    if (heroVisual && y < window.innerHeight){
+      heroVisual.style.transform = `translateY(${y * 0.12}px)`;
+    }
+  }
+  window.addEventListener('scroll', parallaxScroll, {passive:true});
+
+  const hero = document.querySelector('.hero');
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    const x = (e.clientX - rect.width/2) / rect.width;
+    const y = (e.clientY - rect.height/2) / rect.height;
+    layers.forEach(l => {
+      const speed = parseFloat(l.dataset.speed) || 0.2;
+      const baseY = window.scrollY * speed;
+      l.style.transform = `translate(${x * 30 * speed}px, ${baseY + y * 30 * speed}px)`;
+    });
+    if (heroVisual){
+      const baseY = window.scrollY * 0.12;
+      heroVisual.style.transform = `translate(${x * -15}px, ${baseY + y * -15}px)`;
+    }
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting){
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
+    });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const tariffBtns = document.querySelectorAll('.tariff-btn');
+  const contactCard = document.getElementById('contactCard');
+  const selectedTariff = document.getElementById('selectedTariff');
+  const tariffName = document.getElementById('tariffName');
+  const tariffPrice = document.getElementById('tariffPrice');
+  const clearBtn = document.getElementById('clearTariff');
+
+  function setSelectedTariff(name, price){
+    tariffName.textContent = name;
+    tariffPrice.textContent = price;
+    selectedTariff.classList.add('show');
+  }
+
+  function clearSelectedTariff(){
+    selectedTariff.classList.remove('show');
+    tariffName.textContent = '—';
+    tariffPrice.textContent = '—';
+  }
+
+  tariffBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setSelectedTariff(btn.dataset.tariff, btn.dataset.price);
+
+      const target = document.getElementById('contact');
+      const offset = target.getBoundingClientRect().top + window.scrollY - 20;
+      window.scrollTo({top: offset, behavior: 'smooth'});
+
+      contactCard.classList.remove('highlight');
+      void contactCard.offsetWidth;
+      contactCard.classList.add('highlight');
+      setTimeout(() => contactCard.classList.remove('highlight'), 2200);
+    });
+  });
+
+  clearBtn.addEventListener('click', clearSelectedTariff);
+</script>
+</body>
+</html>
